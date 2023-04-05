@@ -1,10 +1,14 @@
-# Insert test data for GoldChat
+/*
+ * Script for creating the unit test data for GoldChat
+ */
 
+# Modules
 INSERT INTO modules(module_name) VALUES('IS52018C: Software Projects / Computing Project 2 (2022-23)');
 INSERT INTO modules(module_name) VALUES('IS52045A: Extended Java (2022-23)');
 INSERT INTO modules(module_name) VALUES('IS52038B: Algorithms and Data Structures / Algorithms 2 (2022-23)');
 INSERT INTO modules(module_name) VALUES('IS52052A: Fundamentals of Computer Science (2022-23)');
 
+# Students
 INSERT INTO students(student_name,password,goldsmiths_id) VALUES('Mahamed Abdulle','abc',1);
 INSERT INTO students(student_name,password,goldsmiths_id) VALUES('Abdulahi Aden','abc',2);
 INSERT INTO students(student_name,password,goldsmiths_id) VALUES('Sadde Aden','abc',3);
@@ -26,6 +30,7 @@ INSERT INTO students(student_name,password,goldsmiths_id) VALUES('Nazim Amin','a
 INSERT INTO students(student_name,password,goldsmiths_id) VALUES('Tiya Anderson','abc',19);
 INSERT INTO students(student_name,password,goldsmiths_id) VALUES('Frazer Anderson','abc',20);
 
+# Module students
 INSERT INTO module_students(module_id, student_id) VALUES(1,1);
 INSERT INTO module_students(module_id, student_id) VALUES(1,2);
 INSERT INTO module_students(module_id, student_id) VALUES(1,3);
@@ -81,6 +86,7 @@ INSERT INTO module_students(module_id, student_id) VALUES(4,16);
 INSERT INTO module_students(module_id, student_id) VALUES(4,18);
 INSERT INTO module_students(module_id, student_id) VALUES(4,20);
 
+# Posts
 INSERT INTO POSTS(title, content, module_id, student_id, date_and_time)
 VALUES ('','Hey, when''s assignment 2 due?', 1, 1, '2023-02-23 11:32');
 

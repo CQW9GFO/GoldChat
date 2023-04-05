@@ -1,12 +1,16 @@
-// Requiring two of our dependencies
+/*
+  Scrape module and student names from learn.gold web page
+ */
+
+// Dependencies
 const request = require('request');
 const cheerio = require('cheerio');
 const fs = require('fs');
 const mysql = require('mysql');
 
-// Requesting to the website
+// Requesting to the website (for testing use a downloaded copy of the page)
 fs.readFile('participants.html','utf8', (error, html) => {
-    // Checking that there is no errors and the response code is correct
+    // If the file loaded OK
     if(!error) {
         console.log("Page loaded OK");
 
@@ -39,6 +43,7 @@ fs.readFile('participants.html','utf8', (error, html) => {
     }
 });
 
+// Function to insert the data into the database
 function insertData(moduleName, students) {
 
         // Define the database connection
@@ -59,7 +64,7 @@ function insertData(moduleName, students) {
             let moduleId;
 
             // Insert module name
-            let sql = "INSERT INTO modules (name) VALUES(?)";
+            let sql = "INSERT INTO modules (module_name) VALUES(?)";
             db.query(sql, [moduleName], (err, result) => {
                 if (err) {
                     throw err;
@@ -69,7 +74,7 @@ function insertData(moduleName, students) {
 
                 // Insert students
                 for (let i=0; i<students.length; i++) {
-                    let sql = "INSERT INTO students (name) VALUES(?)";
+                    let sql = "INSERT INTO students (student_name) VALUES(?)";
                     db.query(sql, [students[i]], (err, result) => {
                         if (err) {
                             throw err;
@@ -84,8 +89,7 @@ function insertData(moduleName, students) {
                                 throw err;
                             }
 
-                            // Insert module_students
-                            let sql = "INSERT INTO module_students (module_id, student_id) VALUES(?,?)";
+                            // Inserted module_students
                             console.log("Module_student inserted " + moduleId + ", " + studentId);
                         }) 
                     })                

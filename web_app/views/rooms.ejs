@@ -10,6 +10,8 @@
     <a href="/" class="menu">Home</a>
     <hr/>
     <p>Your chat rooms</p>
+
+    <!-- Show each chat room -->
     <% rooms.forEach(function(room) { %>
         <div class="room">
             <a href="/chat/<%= room.module_id %>" class="room">Chat Room for <b><%= room.module_name %></b></a>

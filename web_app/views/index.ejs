@@ -10,11 +10,13 @@
     <a href="/" class="menu">Home</a>
     <hr/>
     <p><a href="about" class="menu">About GoldChat</a></p>
+
+    <!-- Logged in users see additional items -->
     <% if (logged_in_student_id==null) { %>
-    <p><a href="login" class="menu">Login</a></p>
+      <p><a href="login" class="menu">Login</a></p>
     <% } else { %>
-    <p><a href="rooms" class="menu">Rooms</a></p>
-    <p><a href="logout" class="menu">Logout</a></p>
+      <p><a href="rooms" class="menu">Rooms</a></p>
+      <p><a href="logout" class="menu">Logout</a></p>
     <% } %>
   </body>
 </html>
