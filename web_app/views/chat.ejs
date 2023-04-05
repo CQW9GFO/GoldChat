@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%=appName%> - Welcome</title>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+  </head>
+  <body>
+    <h1>GoldChat</h1>
+    <h2>Module Talk for Goldsmiths Students</h2>
+    <a href="/" class="menu">Home</a>
+    <hr/>
+    <p>Chat Room for <%=module_name%></p>
+
+    <div>
+
+    <!-- Store date information -->
+    <% let thisDate; let thisMonth; let thisYear; %>
+    <% let lastDate; let lastMonth; let lastYear; %>
+
+    <% messages.forEach(function(message) { %>
+      <!-- Current message's date -->
+      <% thisDate = message.date_and_time.getDate(); %>
+      <% thisMonth = message.date_and_time.toLocaleString('default', {month:'long'}); %>
+      <% thisYear = message.date_and_time.getFullYear(); %>
+
+      <!-- Show date only if it has changed -->
+      <% if (thisDate!=lastDate || thisMonth!=lastMonth || thisYear!=lastYear) {%>
+      <div class="message_date"><%= thisDate + " " + thisMonth + " " + thisYear %></div>
+      <% } %>
+
+      
+      <% if (logged_in_student_id==message.student_id) {%>
+        <!-- Show the message for a logged in student-->
+        <div class="message_logged_in_student">
+          <div class="message_student"><%= message.student_name %></div>
+          <div class="message_content"><%= message.content %></div>
+          <div class="message_time"><%= message.date_and_time.getHours() + ": " + message.date_and_time.getMinutes() %></div>
+        </div>
+      <% } else { %>
+        <!-- Show the message for a non-logged in student-->
+        <div class="message">
+            <div class="message_student"><%= message.student_name %></div>
+            <div class="message_content"><%= message.content %></div>
+            <div class="message_time"><%= message.date_and_time.getHours() + ": " + message.date_and_time.getMinutes() %></div>
+        </div>
+      <% } %>
+
+      <!-- Save last message's date -->
+      <% lastDate = message.date_and_time.getDate(); %>
+      <% lastMonth = message.date_and_time.toLocaleString('default', {month:'long'}); %>
+      <% lastYear = message.date_and_time.getFullYear(); %>
+      
+    <% }) %> 
+
+    </div>
+
+    <div class="newpost">
+    <form method="POST" action="/postadded">
+        <input type="hidden" id="module_id" name="module_id" value="<%= module_id %>" />
+        <p><textarea id="content" type="text" name="content" value="" class="posttext" ></textarea></p>
+        <input type="submit" value="Post" />
+    </form>
+  </div>
+  </body>
+</html>

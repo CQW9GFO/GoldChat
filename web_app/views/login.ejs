@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%=appName%> - Welcome</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+  </head>
+  <body>
+    <h1>GoldChat</h1>
+    <h2>Module Talk for Goldsmiths Students</h2>
+    <a href="/"  class="menu">Home</a>
+    <hr/>
+    <p>Login</p>
+    <form method="POST" action="/loggedin">
+        <p>Name <input id="username" type="text" name="username" /></p>
+        <p>Password <input id="password" type="password" name="password" /></p>
+        <input type="submit" value="Login" />
+    </form>
+  </body>
+</html>
